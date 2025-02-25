@@ -26,7 +26,7 @@ fi
 git config user.name "Replit Deployment"
 git config user.email "deployment@example.com"
 
-# Step 4: Save all current changes to main branch
+# Step 4: Save all changes to main branch
 echo "Saving all changes to main branch..."
 git add .
 git commit -m "Update project code - $DEPLOY_DATE" || echo "No changes to commit"
@@ -37,7 +37,9 @@ git push -u origin main
 
 # Step 6: Build the client-side application
 echo "Building the client application for GitHub Pages..."
-VITE_BASE_URL=/trulyafforableplumbing/ npm run build
+# Set the correct base URL and build path for GitHub Pages
+export VITE_BASE_URL="/trulyafforableplumbing/"
+npm run build
 
 # Step 7: Prepare and deploy to gh-pages branch
 echo "Setting up deployment to gh-pages branch..."
@@ -49,29 +51,8 @@ mkdir -p .deploy
 # Copy the built files
 cp -r dist/public/* .deploy/
 
-# Create 404.html that handles client-side routing
-cat > .deploy/404.html << EOL
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Truly Affordable Plumbing</title>
-    <script type="text/javascript">
-      var pathSegments = window.location.pathname.slice(1).split('/');
-      var repoName = pathSegments[0];
-      var remainingPath = '/' + pathSegments.slice(1).join('/');
-      window.location.replace(
-        window.location.protocol + '//' + window.location.hostname +
-        (window.location.port ? ':' + window.location.port : '') +
-        '/' + repoName + '/#' + remainingPath
-      );
-    </script>
-  </head>
-  <body>
-    Redirecting...
-  </body>
-</html>
-EOL
+# Create 404.html to handle client-side routing
+cp .deploy/index.html .deploy/404.html
 
 # Navigate to the deploy directory
 cd .deploy
