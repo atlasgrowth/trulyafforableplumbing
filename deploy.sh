@@ -31,15 +31,16 @@ echo "Saving all changes to main branch..."
 git add .
 git commit -m "Update project code - $DEPLOY_DATE" || echo "No changes to commit"
 
-# Step 5: Push the main branch to GitHub (this stores all your source code)
+# Step 5: Push the main branch to GitHub
 echo "Pushing source code to main branch..."
 git push -u origin main
 
 # Step 6: Build the client-side application
 echo "Building the client application for GitHub Pages..."
-# Set the correct base URL
-export VITE_BASE_URL="/trulyafforableplumbing/"
-npm run build
+# Set base URL for Vite
+export BASE_URL="/trulyafforableplumbing/"
+export PUBLIC_URL="/trulyafforableplumbing/"
+npm run build -- --base=/trulyafforableplumbing/
 
 # Step 7: Prepare and deploy to gh-pages branch
 echo "Setting up deployment to gh-pages branch..."
