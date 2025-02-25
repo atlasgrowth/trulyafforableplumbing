@@ -9,12 +9,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <img 
-              src="/logo.svg" 
+              src="/logo.png" 
               alt="Truly Affordable Plumbing" 
               className="h-12 cursor-pointer"
             />
           </Link>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/">
               <a className="text-gray-700 hover:text-blue-600">Home</a>
