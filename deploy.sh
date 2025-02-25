@@ -46,11 +46,55 @@ echo "Setting up deployment to gh-pages branch..."
 rm -rf .deploy
 mkdir -p .deploy
 
-# Copy the built files directly from dist/public
+# Copy the built files
 cp -r dist/public/* .deploy/
 
-# Copy index.html to 404.html for client-side routing
-cp .deploy/index.html .deploy/404.html
+# Create 404.html that redirects all requests to index.html
+cat > .deploy/404.html << EOL
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Truly Affordable Plumbing</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      var pathSegmentsToKeep = 1;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
+EOL
+
+# Add special redirect handling to index.html
+sed -i '/<\/head>/i \
+    <script type="text/javascript"> \
+      // Single Page Apps for GitHub Pages \
+      // MIT License \
+      // https://github.com/rafgraph/spa-github-pages \
+      (function(l) { \
+        if (l.search[1] === "/") { \
+          var decoded = l.search.slice(1).split("&").map(function(s) { \
+            return s.replace(/~and~/g, "&") \
+          }).join("?"); \
+          window.history.replaceState(null, null, \
+            l.pathname.slice(0, -1) + decoded + l.hash \
+          ); \
+        } \
+      }(window.location)) \
+    </script>' .deploy/index.html
 
 # Navigate to the deploy directory
 cd .deploy
