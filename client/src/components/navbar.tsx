@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <img 
-              src="/logo.png" 
+              src="./logo.png" 
               alt="Truly Affordable Plumbing" 
               className="h-12 cursor-pointer"
             />

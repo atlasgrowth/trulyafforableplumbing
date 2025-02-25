@@ -44,7 +44,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="/truck.jpg"
+              src="./truck.jpg"
               alt="Truly Affordable Plumbing Service Truck"
               className="rounded-lg shadow-xl"
             />
