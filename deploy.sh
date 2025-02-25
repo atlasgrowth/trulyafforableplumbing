@@ -33,7 +33,7 @@ git commit -m "Update project code - $DEPLOY_DATE" || echo "No changes to commit
 
 # Step 5: Push the main branch to GitHub (this stores all your source code)
 echo "Pushing source code to main branch..."
-git push -u origin main || (echo "Error pushing to main branch. You might need to pull first." && exit 1)
+git push -u origin main
 
 # Step 6: Build the client-side application
 echo "Building the client application for GitHub Pages..."
@@ -49,7 +49,7 @@ mkdir -p .deploy
 # Copy the built files
 cp -r dist/public/* .deploy/
 
-# Create 404.html that redirects all requests to index.html
+# Create 404.html that handles client-side routing
 cat > .deploy/404.html << EOL
 <!DOCTYPE html>
 <html>
@@ -57,18 +57,13 @@ cat > .deploy/404.html << EOL
     <meta charset="utf-8">
     <title>Truly Affordable Plumbing</title>
     <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1;
-
+      var segmentCount = 1;
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
+        l.pathname.split('/').slice(0, segmentCount + 1).join('/') + '/' +
+        l.pathname.slice(1).split('/').slice(segmentCount).join('/') +
+        l.search + l.hash
       );
     </script>
   </head>
@@ -77,24 +72,6 @@ cat > .deploy/404.html << EOL
   </body>
 </html>
 EOL
-
-# Add special redirect handling to index.html
-sed -i '/<\/head>/i \
-    <script type="text/javascript"> \
-      // Single Page Apps for GitHub Pages \
-      // MIT License \
-      // https://github.com/rafgraph/spa-github-pages \
-      (function(l) { \
-        if (l.search[1] === "/") { \
-          var decoded = l.search.slice(1).split("&").map(function(s) { \
-            return s.replace(/~and~/g, "&") \
-          }).join("?"); \
-          window.history.replaceState(null, null, \
-            l.pathname.slice(0, -1) + decoded + l.hash \
-          ); \
-        } \
-      }(window.location)) \
-    </script>' .deploy/index.html
 
 # Navigate to the deploy directory
 cd .deploy

@@ -13,27 +13,9 @@ import Footer from "@/components/footer";
 // Use the VITE_BASE_URL environment variable for GitHub Pages
 const base = import.meta.env.VITE_BASE_URL || '/';
 
-// Configure router to use history-based navigation
-const useHashLocation = () => {
-  const [loc, setLoc] = React.useState(window.location.pathname);
-
-  React.useEffect(() => {
-    const handler = () => setLoc(window.location.pathname);
-    window.addEventListener('popstate', handler);
-    return () => window.removeEventListener('popstate', handler);
-  }, []);
-
-  const navigate = React.useCallback((to: string) => {
-    window.history.pushState(null, '', to);
-    setLoc(to);
-  }, []);
-
-  return [loc, navigate];
-};
-
 function Router() {
   return (
-    <WouterRouter hook={useHashLocation} base={base}>
+    <WouterRouter base={base}>
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
