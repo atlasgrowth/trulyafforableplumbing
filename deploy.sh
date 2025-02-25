@@ -57,13 +57,13 @@ cat > .deploy/404.html << EOL
     <meta charset="utf-8">
     <title>Truly Affordable Plumbing</title>
     <script type="text/javascript">
-      var segmentCount = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, segmentCount + 1).join('/') + '/' +
-        l.pathname.slice(1).split('/').slice(segmentCount).join('/') +
-        l.search + l.hash
+      var pathSegments = window.location.pathname.slice(1).split('/');
+      var repoName = pathSegments[0];
+      var remainingPath = '/' + pathSegments.slice(1).join('/');
+      window.location.replace(
+        window.location.protocol + '//' + window.location.hostname +
+        (window.location.port ? ':' + window.location.port : '') +
+        '/' + repoName + '/#' + remainingPath
       );
     </script>
   </head>
