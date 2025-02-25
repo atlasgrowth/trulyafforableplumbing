@@ -44,26 +44,10 @@ echo "Setting up deployment to gh-pages branch..."
 # Create a temporary directory for the deployment
 rm -rf .deploy
 mkdir -p .deploy
-cp -r dist/* .deploy/
+cp -r dist/public/* .deploy/
 
-# Add special 404.html file for SPA routing
-cat > .deploy/404.html << EOF
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Redirecting...</title>
-  <script>
-    // Redirect to the home page with the current path as a hash
-    var path = window.location.pathname;
-    window.location.href = '/#' + path;
-  </script>
-</head>
-<body>
-  <p>Redirecting...</p>
-</body>
-</html>
-EOF
+# Add CNAME file if needed (uncomment and modify if you have a custom domain)
+# echo "yourdomain.com" > .deploy/CNAME
 
 # Navigate to the deploy directory
 cd .deploy
