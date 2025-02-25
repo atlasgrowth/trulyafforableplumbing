@@ -7,68 +7,61 @@ const services = [
   {
     icon: <AlertTriangle className="h-8 w-8 text-red-500" />,
     title: "Emergency Services",
-    description: "24/7 emergency plumbing repairs and support when you need it most from Truly Affordable Plumbing",
-    urgent: true
+    description: "24/7 emergency plumbing repairs and support when you need it most",
+    urgent: true,
+    bgColor: "bg-gradient-to-br from-red-50 to-orange-50"
   },
   {
-    icon: <Wrench className="h-8 w-8 text-blue-500" />,
+    icon: <Wrench className="h-8 w-8 text-blue-600" />,
     title: "Plumbing Repairs",
-    description: "Expert repairs for leaks, clogs, and all plumbing issues with our professional team"
+    description: "Expert repairs for leaks, clogs, and all plumbing issues",
+    bgColor: "bg-gradient-to-br from-blue-50 to-indigo-50"
   },
   {
-    icon: <Droplet className="h-8 w-8 text-blue-500" />,
+    icon: <Droplet className="h-8 w-8 text-cyan-500" />,
     title: "Water Heater Services",
-    description: "Professional installation, repair, and maintenance of water heaters"
+    description: "Installation, repair, and maintenance of water heaters",
+    bgColor: "bg-gradient-to-br from-cyan-50 to-blue-50"
   },
   {
     icon: <Flame className="h-8 w-8 text-orange-500" />,
     title: "Gas Line Services",
-    description: "Professional natural gas line installation and repairs by certified experts"
+    description: "Professional natural gas line installation and repairs",
+    bgColor: "bg-gradient-to-br from-orange-50 to-yellow-50"
   },
   {
-    icon: <Home className="h-8 w-8 text-blue-500" />,
+    icon: <Home className="h-8 w-8 text-green-600" />,
     title: "Residential Plumbing",
-    description: "Complete home plumbing solutions from Jackson's trusted plumbing service"
+    description: "Complete home plumbing solutions and maintenance",
+    bgColor: "bg-gradient-to-br from-green-50 to-emerald-50"
   },
   {
-    icon: <Clock className="h-8 w-8 text-green-500" />,
+    icon: <Clock className="h-8 w-8 text-purple-600" />,
     title: "Preventive Maintenance",
-    description: "Regular maintenance plans to prevent costly repairs and ensure peace of mind"
+    description: "Regular maintenance to prevent costly repairs",
+    bgColor: "bg-gradient-to-br from-purple-50 to-violet-50"
   }
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 via-white to-gray-50" />
-
-      {/* Pattern Overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230066FF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <div className="container mx-auto px-4 relative">
+    <section className="py-16 bg-gradient-to-b from-white via-blue-50 to-white">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <span className="inline-block bg-blue-100 text-blue-600 rounded-full px-4 py-1 text-sm font-semibold mb-4">
-            Truly Affordable Plumbing Services
-          </span>
-          <h2 className="text-4xl font-bold mb-4">Professional Plumbing Solutions</h2>
+          <h2 className="text-3xl font-bold mb-4 text-blue-600">Our Professional Services</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-8">
-            Delivering quality plumbing services to Jackson MS and surrounding areas, available 24/7 for your needs
+            Truly Affordable Plumbing provides expert services for all your plumbing needs
           </p>
           <Button 
             size="lg"
             variant="default"
-            className="flex items-center gap-2 mx-auto hover:scale-105 transition-transform shadow-lg"
+            className="flex items-center gap-2 mx-auto bg-blue-600 hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
           >
             <Phone className="h-5 w-5" />
             <a href="tel:+16012594203">Call Now: (601) 259-4203</a>
@@ -84,19 +77,10 @@ export default function ServicesSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                {/* Card Background Pattern */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: service.urgent ? 
-                      `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FF0000' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` :
-                      `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230066FF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-                  }} />
-                </div>
-
+              <Card className={`h-full hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden ${service.bgColor}`}>
                 <CardHeader>
                   <div className="mb-4 flex justify-center">
-                    <div className={`p-4 rounded-full ${service.urgent ? 'bg-red-50' : 'bg-blue-50'} relative z-10`}>
+                    <div className={`p-6 rounded-full bg-white/80 shadow-lg transform hover:scale-110 transition-transform duration-300`}>
                       {service.icon}
                     </div>
                   </div>
@@ -105,8 +89,12 @@ export default function ServicesSection() {
                 </CardHeader>
                 <CardContent className="flex justify-center pb-6">
                   <Button 
-                    variant={service.urgent ? "destructive" : "outline"}
-                    className="flex items-center gap-2 hover:scale-105 transition-transform"
+                    variant={service.urgent ? "destructive" : "default"}
+                    className={`flex items-center gap-2 transform hover:scale-105 transition-all duration-300 ${
+                      service.urgent 
+                        ? 'bg-red-500 hover:bg-red-600' 
+                        : 'bg-blue-600 hover:bg-blue-700'
+                    }`}
                   >
                     <Phone className="h-4 w-4" />
                     <a href="tel:+16012594203">
