@@ -37,17 +37,20 @@ git push -u origin main || (echo "Error pushing to main branch. You might need t
 
 # Step 6: Build the client-side application
 echo "Building the client application for GitHub Pages..."
-npm run build
+VITE_BASE_URL=/trulyafforableplumbing/ npm run build
 
 # Step 7: Prepare and deploy to gh-pages branch
 echo "Setting up deployment to gh-pages branch..."
-# Create a temporary directory for the deployment
+
+# Clean up any previous gh-pages branch
 rm -rf .deploy
 mkdir -p .deploy
+
+# Copy the built files directly from dist/public
 cp -r dist/public/* .deploy/
 
-# Add CNAME file if needed (uncomment and modify if you have a custom domain)
-# echo "yourdomain.com" > .deploy/CNAME
+# Copy index.html to 404.html for client-side routing
+cp .deploy/index.html .deploy/404.html
 
 # Navigate to the deploy directory
 cd .deploy
