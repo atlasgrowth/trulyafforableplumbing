@@ -37,7 +37,7 @@ git push -u origin main
 
 # Step 6: Build the client-side application
 echo "Building the client application for GitHub Pages..."
-# Set the correct base URL and build path for GitHub Pages
+# Set the correct base URL
 export VITE_BASE_URL="/trulyafforableplumbing/"
 npm run build
 
