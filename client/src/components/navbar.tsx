@@ -9,7 +9,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <img 
-              src="https://scontent.fjan1-1.fna.fbcdn.net/v/t39.30808-1/277575501_401651531965369_937663200099246330_n.png"
+              src="https://scontent.fjan1-1.fna.fbcdn.net/v/t39.30808-1/277575501_401651531965369_937663200099246330_n.png?stp=dst-png_s200x200&_nc_cat=104&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=95gnOCkxFq4Q7kNvgGTFmec&_nc_oc=Adg5TA5uDOYZmpupuSVwtVxr-XSx_uCsR8C8YVIDxyaANykEZIfc2HeW6AFwXh0hpNk&_nc_zt=24&_nc_ht=scontent.fjan1-1.fna&_nc_gid=AuMBrcEN4WkXF2oRTBdJzCd&oh=00_AYAXUdSFULdX0gVEz-c6polgQBJqxS9TqHH4oVUeVdCuTg&oe=67C3D3F1"
               alt="Truly Affordable Plumbing" 
               className="h-12 cursor-pointer"
             />
